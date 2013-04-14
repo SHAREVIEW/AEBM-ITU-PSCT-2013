@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;BluetoothServer&apos;" deleteContents="false" description="Delete resource &apos;BluetoothServer&apos;" element1="/BluetoothServer" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1365955017805"/>
+</session>
