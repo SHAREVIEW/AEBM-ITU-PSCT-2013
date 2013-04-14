@@ -6,9 +6,15 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ImageView;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
@@ -16,7 +22,7 @@ import java.util.UUID;
 public class MainActivity extends Activity {
 
 	BluetoothAdapter myBt;
-	BluetoothSocket bs;
+
 	private UUID uuid = UUID.fromString("a60f35f0-b93a-11de-8a39-08002009c666");
 	private static int REQUEST_ENABLE_BT = 0;
 
@@ -76,18 +82,55 @@ public class MainActivity extends Activity {
 		discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120);
 		this.startActivity(discoverableIntent);
 	}
+	
+	private byte[] extract(InputStream inputStream) throws IOException {	
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();				
+		byte[] buffer = new byte[277577];
+		int read = 0;
+		try {
+		while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
+			baos.write(buffer, 0, read);
+		}		
+		} catch (Exception e)
+		{
+			// done reading - LOL fuckedupway.
+		}
+		baos.flush();		
+		return baos.toByteArray();
+	}
 	 
 	///start listening for incoming data
 	//this method must run inside a thread.
+	Bitmap mutableBitmap;
 	private void listenForConnection() {
 		try {
 			BluetoothServerSocket bss = myBt.listenUsingRfcommWithServiceRecord("SURFACEIMGSHARE", uuid);
-			bs = bss.accept();
-			bss.close();
-			OutputStream os = bs.getOutputStream();
-			os.write("goodbye".getBytes()); //send a message
-	 
-			os.close(); //close it
+			
+			BluetoothSocket bs = bss.accept();
+			InputStream is = bs.getInputStream();
+			byte[] data = extract(is);
+			
+
+			Bitmap bmp;
+			bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+			mutableBitmap = bmp.copy(Bitmap.Config.ARGB_8888, true);
+			
+
+			try {
+
+				this.runOnUiThread(new Runnable() { 
+					@Override 
+					public void run() { 
+						ImageView image = (ImageView) findViewById(R.id.imageView1);
+						image.setImageBitmap(mutableBitmap);
+					}
+				});
+
+			} catch (Exception e)
+			{
+
+			}
+			is.close();
 			bs.close();
 		} catch (IOException e) {
 			e.printStackTrace();

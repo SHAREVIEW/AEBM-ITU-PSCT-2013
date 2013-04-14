@@ -1,3 +1,2 @@
-INDEX VERSION 1.126+/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA2/.metadata/.plugins/org.eclipse.jdt.core
-933006087.index
-2419206149.index
+INDEX VERSION 1.126+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\.metadata\.plugins\org.eclipse.jdt.core
+3241315564.index
