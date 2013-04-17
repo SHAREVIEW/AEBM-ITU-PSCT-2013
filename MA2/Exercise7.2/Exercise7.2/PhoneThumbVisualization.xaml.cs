@@ -23,8 +23,15 @@ namespace Exercise7._2
     /// </summary>
     public partial class PhoneThumbVisualization : TagVisualization
     {
-        public long TagValue;
+        public long TagValue { get; set; }
         public BluetoothEndPoint BTEndpoint { get; set; }
+        public string ThumbName
+        {
+            get
+            {
+                return TagValue + ": " + BTEndpoint.Address;
+            }
+        }
 
         private Dictionary<long, BluetoothEndPoint> addressTagMapping;
         public PhoneThumbVisualization()

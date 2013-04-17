@@ -14,6 +14,11 @@
                 </WrapPanel>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="SurfaceListBoxItemDataTemplate">
+            <Grid Background="Snow" Width="100" Margin="-5">
+                <Label Content="{Binding Path=ThumbName}" Foreground="Gold"></Label>
+            </Grid>
+        </DataTemplate>
         <Style x:Key="CursorStyle" TargetType="{x:Type ContentControl}">
             <Setter Property="Opacity" Value="0.50"/>
             <Setter Property="ContentTemplate" Value="{StaticResource ScatterViewItemDataTemplate}" />
@@ -80,8 +85,11 @@
                                         Width="100"
                                         AllowDrop="True"
                                         s:SurfaceDragDrop.DragEnter="PinnedItems_DragEnter"
-                                        s:SurfaceDragDrop.DragLeave="PinnedItems_DragLeave">
-
+                                        s:SurfaceDragDrop.DragLeave="PinnedItems_DragLeave"
+                                        ItemTemplate="{StaticResource SurfaceListBoxItemDataTemplate}">
+                            <s:SurfaceListBox.Resources>
+                                <c:PhoneThumbVisualization x:Key="phoneThumbVizualisation" />
+                            </s:SurfaceListBox.Resources>
                             <s:SurfaceListBox.ItemContainerStyle>
                                 <Style TargetType="s:SurfaceListBoxItem">
                                     <EventSetter Event="s:SurfaceDragDrop.Drop" Handler="PinnedItems_Drop"/>

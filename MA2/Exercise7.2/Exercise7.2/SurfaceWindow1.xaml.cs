@@ -31,6 +31,7 @@ namespace Exercise7._2
     public partial class SurfaceWindow1 : SurfaceWindow
     {
         public static ObservableCollection<DragableImageItem> Images { get; set; }
+        public static ObservableCollection<PhoneThumbVisualization> Thumbs { get; set; }
         Dictionary<long, Color> tagColors = new Dictionary<long, Color>();
         static ScatterView scw;
         Dictionary<long, bool> pinned;
@@ -45,10 +46,12 @@ namespace Exercise7._2
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
             Images = new ObservableCollection<DragableImageItem>();
+            Thumbs = new ObservableCollection<PhoneThumbVisualization>();
 
             Images.CollectionChanged += Images_Changed;
-            Images.CollectionChanged += SendImages_Changed;
+            Thumbs.CollectionChanged += Thumbs_Changed;
             ImgScatterView.ItemsSource = Images;
+            PinnedItems.ItemsSource = Thumbs;
             scw = ImgScatterView;
         }
 
@@ -57,11 +60,10 @@ namespace Exercise7._2
             ImgScatterView.Dispatcher.Invoke(new Action(() => ImgScatterView.UpdateLayout()));
         }
 
-        protected void SendImages_Changed(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        protected void Thumbs_Changed(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            // Do what?
+            ImgScatterView.Dispatcher.Invoke(new Action(() => ImgScatterView.UpdateLayout()));
         }
-
 
         protected void ScatterViewItem_TouchDown(object sender, TouchEventArgs e)
         {
@@ -240,7 +242,7 @@ namespace Exercise7._2
         {
             pinned[e.TagVisualization.VisualizedTag.Value] = false;
             PhoneThumbVisualization ptv = null;
-            foreach (PhoneThumbVisualization i in PinnedItems.Items)
+            foreach (PhoneThumbVisualization i in Thumbs)
             {
                 if (i.TagValue == e.TagVisualization.VisualizedTag.Value)
                 {
@@ -249,10 +251,10 @@ namespace Exercise7._2
             }
             if (ptv != null)
             {
-                PinnedItems.Items.Remove(ptv);
+                Thumbs.Remove(ptv);
             }
             PhoneThumbVisualization newPtv = new PhoneThumbVisualization(e.TagVisualization.VisualizedTag.Value);
-            PinnedItems.Items.Add(newPtv);
+            Thumbs.Add(newPtv);
         }
 
         private void Register_Pin(object sender, PinnedEventArgs e)
@@ -273,7 +275,7 @@ namespace Exercise7._2
                 if (!pinned[e.TagVisualization.VisualizedTag.Value])
                 {
                     PhoneThumbVisualization ptv = null;
-                    foreach (PhoneThumbVisualization i in PinnedItems.Items)
+                    foreach (PhoneThumbVisualization i in Thumbs)
                     {
                         if (i.TagValue == e.TagVisualization.VisualizedTag.Value)
                         {
@@ -282,7 +284,7 @@ namespace Exercise7._2
                     }
                     if (ptv != null)
                     {
-                        PinnedItems.Items.Remove(ptv);
+                        Thumbs.Remove(ptv);
                     }
                 }
             }

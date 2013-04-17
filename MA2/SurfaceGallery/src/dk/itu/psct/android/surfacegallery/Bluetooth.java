@@ -155,7 +155,6 @@ public class Bluetooth {
 				} 
 
 			}
-			os.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
