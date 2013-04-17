@@ -1,0 +1,12 @@
+﻿<s:TagVisualization x:Class="Exercise7._2.PhoneThumbVisualization"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="http://schemas.microsoft.com/surface/2008"
+    Loaded="PhoneThumbVisualization_Loaded"
+    >
+    <Grid>
+        <StackPanel s:SurfaceDragDrop.Drop="StackPanel_Drop">
+            <Label Name="PhoneType">Unknown Phone</Label>
+        </StackPanel>
+    </Grid>
+</s:TagVisualization>
