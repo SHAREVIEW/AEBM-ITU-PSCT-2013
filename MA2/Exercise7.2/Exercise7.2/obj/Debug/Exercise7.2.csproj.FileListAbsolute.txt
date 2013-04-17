@@ -39,3 +39,29 @@ C:\Users\bech\Documents\Visual Studio 2010\Projects\Exercise7.2\Exercise7.2\obj\
 C:\Users\bech\Documents\Visual Studio 2010\Projects\Exercise7.2\Exercise7.2\obj\Debug\PhoneThumbVisualization.g.cs
 C:\Users\bech\Documents\Visual Studio 2010\Projects\Exercise7.2\Exercise7.2\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\bech\Documents\Visual Studio 2010\Projects\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2_MarkupCompile.lref
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2.exe
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2.pdb
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\Resources\icon.png
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\Exercise7.2.xml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\Exercise7.2.exe
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\Exercise7.2.pdb
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\FlickrNet.dll
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\InTheHand.Net.Personal.dll
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\bin\Debug\InTheHand.Net.Personal.xml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\PhoneThumbVisualization.baml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\PhoneVisualization.baml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\App.baml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\PhoneThumbVisualization.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\PhoneVisualization.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\App.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2_Content.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2_MarkupCompile.cache
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2_MarkupCompile.lref
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\SurfaceWindow1.baml
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7.2.g.resources
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\Exercise7._2.Properties.Resources.resources
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\bech\Documents\Uni\Kandidat\Pervasive Computing\AEBM-ITU-PSCT-2013\MA2\Exercise7.2\Exercise7.2\obj\Debug\GenerateResource.write.1.tlog

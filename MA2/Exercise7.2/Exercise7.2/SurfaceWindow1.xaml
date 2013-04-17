@@ -6,7 +6,7 @@
     xmlns:c="clr-namespace:Exercise7._2">
     <s:SurfaceWindow.Resources>
         <DataTemplate x:Key="ScatterViewItemDataTemplate">
-            <Grid TouchDown="ScatterViewItem_TouchDown">
+            <Grid>
                 <Grid.Background>
                     <ImageBrush ImageSource="{Binding Path=Image}"></ImageBrush>
                 </Grid.Background>
@@ -21,8 +21,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
                         <ContentPresenter 
-            Content="{TemplateBinding Content}" 
-            ContentTemplate="{TemplateBinding ContentTemplate}">
+                            Content="{TemplateBinding Content}" 
+                            ContentTemplate="{TemplateBinding ContentTemplate}">
                         </ContentPresenter>
                     </ControlTemplate>
                 </Setter.Value>
@@ -34,26 +34,24 @@
             </Style.Triggers>
         </Style>
     </s:SurfaceWindow.Resources>
-  <Grid>
+    <Grid>
         <StackPanel Background="Transparent" 
-                  Orientation="Vertical" 
-                 Height="800" Width="1000"
-                  VerticalAlignment="Top" 
-                  HorizontalAlignment="Left">
+                    Orientation="Vertical" 
+                    Height="800" Width="1000"
+                    VerticalAlignment="Top" 
+                     HorizontalAlignment="Left">
             <StackPanel Name="SearchBarPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                 <s:SurfaceTextBox Name="QueryBox" Width="500" Margin="8"></s:SurfaceTextBox>
                 <s:SurfaceButton Name="QueryButton" Width="200" Margin="8" Click="QueryButton_Click">Search</s:SurfaceButton>
             </StackPanel>
-
             <StackPanel>
-
                 <s:TagVisualizer x:Name="Visualizer"    
                              VisualizationAdded="Visualizer_VisualizationAdded"
                              VisualizationRemoved="Visualizer_VisualizationRemoved">
                     <s:TagVisualizer.Definitions>
                         <s:TagVisualizationDefinition Value="0x1" 
                                               Source="PhoneVisualization.xaml"
-                                              LostTagTimeout="3000"
+                                              LostTagTimeout="1000"
                                               MaxCount="1"
                                               OrientationOffsetFromTag="0"
                                               PhysicalCenterOffsetFromTag="2,2" 
@@ -71,33 +69,42 @@
                                               />
 
                     </s:TagVisualizer.Definitions>
-                    <StackPanel Orientation="Horizontal">
-                        <s:SurfaceListBox Name="PinnedItems" Width="100"
-                                          s:SurfaceDragDrop.DragEnter="PinnedItems_DragEnter"
-                                          s:SurfaceDragDrop.DragLeave="PinnedItems_DragLeave"
-                                          s:SurfaceDragDrop.Drop="PinnedItems_Drop"
-                                          ></s:SurfaceListBox>
-                        <s:ScatterView Name="ImgScatterView" Height="400" Width="1000"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <s:SurfaceListBox Name="PinnedItems" 
+                                        HorizontalAlignment="Left" 
+                                        Width="100"
+                                        AllowDrop="True"
+                                        s:SurfaceDragDrop.DragEnter="PinnedItems_DragEnter"
+                                        s:SurfaceDragDrop.DragLeave="PinnedItems_DragLeave">
+
+                            <s:SurfaceListBox.ItemContainerStyle>
+                                <Style TargetType="s:SurfaceListBoxItem">
+                                    <EventSetter Event="s:SurfaceDragDrop.Drop" Handler="PinnedItems_Drop"/>
+                                    <Setter Property="AllowDrop" Value="True" />
+                                </Style>
+                            </s:SurfaceListBox.ItemContainerStyle>
+                        </s:SurfaceListBox>
+
+                        <s:ScatterView Name="ImgScatterView"
+                                       Width="1000"
+                                       Height="700"
                                        s:TagVisualizer.IsTagVisualizationHost="True"
                                        s:SurfaceDragDrop.DragCanceled="ImgScatterView_DragCanceled"
                                        s:SurfaceDragDrop.DragCompleted="ImgScatterView_DragCompleted"
-                                       PreviewMouseDown="ImgScatterView_PreviewDeviceDown"
-                                       PreviewTouchDown="ImgScatterView_PreviewDeviceDown"
+                                       PreviewMouseDown="DragSourcePreviewInputDeviceDown"
+                                       PreviewTouchDown="DragSourcePreviewInputDeviceDown"
                                        ItemTemplate="{StaticResource ScatterViewItemDataTemplate}">
                             <s:ScatterView.Resources>
                                 <c:DragableImageItem x:Key="dragableImageItem"/>
                             </s:ScatterView.Resources>
                         </s:ScatterView>
-            </StackPanel>
-            </s:TagVisualizer>
-                <StackPanel Name="Palette" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Rectangle Name="DipArea" RadiusX="20" RadiusY="20" Width="80" Height="80" TouchDown="DipArea_TouchDown" Fill="White" ></Rectangle>
-                    <Ellipse Name="ColorWhite" TouchDown="Color_TouchDown" Fill="White" Width="50" Height="50"></Ellipse>
-                    <Ellipse Name="ColorRed" TouchDown="Color_TouchDown" Fill="Red" Width="50" Height="50"></Ellipse>
-                    <Ellipse Name="ColorGreen"  TouchDown="Color_TouchDown" Fill="Green" Width="50" Height="50"></Ellipse>
-                    <Ellipse Name="ColorBlue"  TouchDown="Color_TouchDown" Fill="Blue" Width="50" Height="50"></Ellipse>
-                    <Ellipse Name="ColorYellow"  TouchDown="Color_TouchDown" Fill="Yellow" Width="50" Height="50"></Ellipse>
-                </StackPanel>
+                    </Grid>
+                </s:TagVisualizer>
             </StackPanel>
             <StackPanel Name="BottomPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                 <s:SurfaceButton Name="ClearImagesButton" Width="200" Margin="8" Click="ClearImagesButton_Click">Clear Images</s:SurfaceButton>

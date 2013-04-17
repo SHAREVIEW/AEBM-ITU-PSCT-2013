@@ -30,10 +30,7 @@ namespace Exercise7._2
     /// </summary>
     public partial class SurfaceWindow1 : SurfaceWindow
     {
-        static ObservableCollection<DragableImageItem> images;
-        public ObservableCollection<DragableImageItem> Images { get; set; }
-        static ObservableCollection<DragableImageItem> targetImages;
-        public ObservableCollection<DragableImageItem> TargetImages { get; set; }
+        public static ObservableCollection<DragableImageItem> Images { get; set; }
         Dictionary<long, Color> tagColors = new Dictionary<long, Color>();
         static ScatterView scw;
         Dictionary<long, bool> pinned;
@@ -47,15 +44,12 @@ namespace Exercise7._2
             PhoneVisualization.PinnedEvent += Register_Pin;
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
-            images = new ObservableCollection<DragableImageItem>();
-            targetImages = new ObservableCollection<DragableImageItem>();
+            Images = new ObservableCollection<DragableImageItem>();
 
-            images.CollectionChanged += Images_Changed;
-            images.CollectionChanged += SendImages_Changed;
-            ImgScatterView.ItemsSource = images;
+            Images.CollectionChanged += Images_Changed;
+            Images.CollectionChanged += SendImages_Changed;
+            ImgScatterView.ItemsSource = Images;
             scw = ImgScatterView;
-
-            //System.Threading.Tasks.Task.Factory.StartNew(() => BluetoothHandler.ListenForImages());
         }
 
         protected void Images_Changed(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -158,8 +152,6 @@ namespace Exercise7._2
             //TODO: disable audio, animations here
         }
 
-
-
         private void QueryButton_Click(object sender, RoutedEventArgs e)
         {
             ImgScatterView.Visibility = Visibility.Visible;
@@ -229,25 +221,7 @@ namespace Exercise7._2
 
         private void ClearImagesButton_Click(object sender, RoutedEventArgs e)
         {
-            images.Clear();
-        }
-
-        private void DipArea_TouchDown(object sender, TouchEventArgs e)
-        {
-            BluetoothHandler.GetImages(null);
-            if (e.Device.GetIsTagRecognized())
-            {
-                tagColors[e.Device.GetTagData().Value] = ((SolidColorBrush)((Rectangle)sender).Fill).Color;
-            }
-        }
-
-        private void Color_TouchDown(object sender, TouchEventArgs e)
-        {
-            if (e.Device.GetIsFingerRecognized())
-            {
-                DipArea.Fill = ((Ellipse)sender).Fill;
-                DipArea.UpdateLayout();
-            }
+            Images.Clear();
         }
 
         public static void AddImage(System.Drawing.Image img)
@@ -259,7 +233,7 @@ namespace Exercise7._2
              new Int32Rect(0, 0, oldBitmap.Width, oldBitmap.Height),
              null);
             bitmapSource.Freeze();
-            scw.Dispatcher.Invoke(new Action(() => images.Add(new DragableImageItem("", true, bitmapSource))));
+            scw.Dispatcher.Invoke(new Action(() => Images.Add(new DragableImageItem("", true, bitmapSource))));
         }
 
         private void Visualizer_VisualizationAdded(object sender, TagVisualizerEventArgs e)
@@ -274,7 +248,9 @@ namespace Exercise7._2
                 }
             }
             if (ptv != null)
+            {
                 PinnedItems.Items.Remove(ptv);
+            }
             PhoneThumbVisualization newPtv = new PhoneThumbVisualization(e.TagVisualization.VisualizedTag.Value);
             PinnedItems.Items.Add(newPtv);
         }
@@ -305,7 +281,9 @@ namespace Exercise7._2
                         }
                     }
                     if (ptv != null)
+                    {
                         PinnedItems.Items.Remove(ptv);
+                    }
                 }
             }
         }
@@ -326,7 +304,7 @@ namespace Exercise7._2
         {
             if (e.Cursor.Effects == DragDropEffects.Move)
             {
-                images.Remove(e.Cursor.Data as DragableImageItem);
+                Images.Remove(e.Cursor.Data as DragableImageItem);
             }
         }
 
@@ -342,10 +320,13 @@ namespace Exercise7._2
 
         private void PinnedItems_Drop(object sender, SurfaceDragDropEventArgs e)
         {
-            TargetImages.Add(e.Cursor.Data as DragableImageItem);
+            DragableImageItem image = e.Cursor.Data as DragableImageItem;
+            SurfaceListBoxItem s = (SurfaceListBoxItem)sender;
+            BluetoothHandler.SendBluetooth((s.Content as PhoneThumbVisualization).BTEndpoint, image.Image);
         }
 
-        private void ImgScatterView_PreviewDeviceDown(object sender, InputEventArgs e)
+
+        private void DragSourcePreviewInputDeviceDown(object sender, InputEventArgs e)
         {
             FrameworkElement findSource = e.OriginalSource as FrameworkElement;
             ScatterViewItem draggedElement = null;
