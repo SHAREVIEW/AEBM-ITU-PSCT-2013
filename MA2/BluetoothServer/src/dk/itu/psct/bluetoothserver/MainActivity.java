@@ -5,24 +5,33 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.UUID;
 
 
 public class MainActivity extends Activity {
 
 	BluetoothAdapter myBt;
-
+	BluetoothServerSocket bss;
 	private UUID uuid = UUID.fromString("a60f35f0-b93a-11de-8a39-08002009c666");
 	private static int REQUEST_ENABLE_BT = 0;
 
@@ -43,7 +52,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		}.start();
-		
 	}
 
 	@Override
@@ -94,9 +102,12 @@ public class MainActivity extends Activity {
 		} catch (Exception e)
 		{
 			// done reading - LOL fuckedupway.
+			inputStream.close();
 		}
 		baos.flush();		
-		return baos.toByteArray();
+		byte[] retValue = baos.toByteArray();
+		baos.close();
+		return retValue;
 	}
 	 
 	///start listening for incoming data
@@ -104,7 +115,8 @@ public class MainActivity extends Activity {
 	Bitmap mutableBitmap;
 	private void listenForConnection() {
 		try {
-			BluetoothServerSocket bss = myBt.listenUsingRfcommWithServiceRecord("SURFACEIMGSHARE", uuid);
+			if (bss == null)
+				bss = myBt.listenUsingRfcommWithServiceRecord("SURFACEIMGSHARE", uuid);
 			
 			BluetoothSocket bs = bss.accept();
 			InputStream is = bs.getInputStream();
@@ -113,22 +125,26 @@ public class MainActivity extends Activity {
 
 			Bitmap bmp;
 			bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
-			mutableBitmap = bmp.copy(Bitmap.Config.ARGB_8888, true);
 			
-
+			
+			
 			try {
-
-				this.runOnUiThread(new Runnable() { 
-					@Override 
-					public void run() { 
-						ImageView image = (ImageView) findViewById(R.id.imageView1);
-						image.setImageBitmap(mutableBitmap);
-					}
-				});
-
-			} catch (Exception e)
+				try {
+					mutableBitmap = bmp.copy(Bitmap.Config.ARGB_8888, true);
+					this.runOnUiThread(new Runnable() { 
+						@Override 
+						public void run() { 
+							ImageView img = (ImageView) findViewById(R.id.imageView1);
+							img.setImageBitmap(mutableBitmap);
+						}
+					});
+	
+				} catch (Exception e)
+				{
+				}
+			} catch (Exception ex)
 			{
-
+				String s = ex.getMessage(); // dont ask me why, but it required two trycatches to not turn into a crash.
 			}
 			is.close();
 			bs.close();
@@ -136,5 +152,6 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
+	
 
 }
