@@ -32,9 +32,7 @@ namespace Exercise7._2
         public static void SendBluetooth(BluetoothEndPoint endpoint, BitmapSource bms)
         {
             InTheHand.Net.Sockets.BluetoothClient btc = new InTheHand.Net.Sockets.BluetoothClient();
-            var addr = new BluetoothAddress(0xF8DB7F65F19D);
-            BluetoothEndPoint bte = new BluetoothEndPoint(addr, new Guid("a60f35f0-b93a-11de-8a39-08002009c666"));
-            btc.Connect(bte);
+            btc.Connect(endpoint);
             byte[] img = BmSourceToByteArr(bms);
             var nws = btc.GetStream();
             byte[] imgSize = BitConverter.GetBytes(img.Length);
@@ -47,9 +45,7 @@ namespace Exercise7._2
         public static void GetImages(BluetoothEndPoint endpoint)
         {
             InTheHand.Net.Sockets.BluetoothClient btc = new InTheHand.Net.Sockets.BluetoothClient();
-            var addr = new BluetoothAddress(0xF8DB7F65F19D);
-            BluetoothEndPoint bte = new BluetoothEndPoint(addr, new Guid("a60f35f0-b93a-11de-8a39-08002009c666"));
-            btc.Connect(bte);
+            btc.Connect(endpoint);
             var nws = btc.GetStream();
             byte[] emptySize = BitConverter.GetBytes(0); //
             if (BitConverter.IsLittleEndian) Array.Reverse(emptySize); // redundant but usefull in case the number changes later..
@@ -75,40 +71,17 @@ namespace Exercise7._2
         static int GetImgSize(NetworkStream nws)
         {
             byte[] buffer = new byte[4];
-            int r = nws.Read(buffer, 0, buffer.Length);
-            if (BitConverter.IsLittleEndian) buffer.Reverse();
+            int i = 4;
+            while (i > 0)
+            {
+                int read = nws.Read(buffer, 0, i);
+                i = i - read;
+            }
+            
+            if (BitConverter.IsLittleEndian) Array.Reverse(buffer);
             int ret = BitConverter.ToInt32(buffer, 0);
 
             return ret;
-        }
-
-        public static void ListenForImages()
-        {
-            while (true)
-            {
-                //BluetoothListener btl = new BluetoothListener(serviceGuid);
-                //btl.Start();
-                //BluetoothClient btc = btl.AcceptBluetoothClient();
-                //NetworkStream nws = btc.GetStream();
-                //int imgCount = GetImgSize(nws);
-
-
-                //for (int i = 0; i < imgCount; i++)
-                //{
-                //    MemoryStream ms = new MemoryStream();
-                //    int size = GetImgSize(nws);
-                //    if (size == 0) continue;
-                //    byte[] buffer = new byte[size];
-                //    int read = 0;
-
-                //    while ((read = nws.Read(buffer, 0, buffer.Length)) != 0)
-                //    {
-                //        ms.Write(buffer, 0, read);
-                //    }
-                //    SurfaceWindow1.AddImage(System.Drawing.Image.FromStream(ms));
-                //}
-                //nws.Close();
-            }
         }
     }
 }

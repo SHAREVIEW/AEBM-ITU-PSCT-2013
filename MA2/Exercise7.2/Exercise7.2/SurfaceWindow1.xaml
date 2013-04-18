@@ -15,8 +15,8 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SurfaceListBoxItemDataTemplate">
-            <Grid Background="Snow" Width="100" Margin="-5">
-                <Label Content="{Binding Path=ThumbName}" Foreground="Gold"></Label>
+            <Grid Background="Snow" Width="180" Margin="-5">
+                <Label Content="{Binding Path=ThumbName}" Foreground="Black"></Label>
             </Grid>
         </DataTemplate>
         <Style x:Key="CursorStyle" TargetType="{x:Type ContentControl}">
@@ -39,33 +39,34 @@
             </Style.Triggers>
         </Style>
     </s:SurfaceWindow.Resources>
-    <Grid>
-        <StackPanel Background="Transparent" 
-                    Orientation="Vertical" 
-                    Height="800" Width="1000"
-                    VerticalAlignment="Top" 
-                     HorizontalAlignment="Left">
-            <StackPanel Name="SearchBarPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+
+        <DockPanel LastChildFill="True" Background="Transparent" 
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch">
+            <StackPanel DockPanel.Dock="Top" Name="SearchBarPanel" Orientation="Horizontal" HorizontalAlignment="Center">
                 <s:SurfaceTextBox Name="QueryBox" Width="500" Margin="8"></s:SurfaceTextBox>
                 <s:SurfaceButton Name="QueryButton" Width="200" Margin="8" Click="QueryButton_Click">Search</s:SurfaceButton>
             </StackPanel>
-            <StackPanel>
-                <s:TagVisualizer x:Name="Visualizer"    
+            <StackPanel DockPanel.Dock="Bottom" Name="BottomPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                <s:SurfaceButton Name="ClearImagesButton" Width="200" Margin="8" Click="ClearImagesButton_Click">Clear Images</s:SurfaceButton>
+                <s:SurfaceButton Name="ShowSearchButton" Width="200" Margin="8" Click="ShowSearchButton_Click">Show Search</s:SurfaceButton>
+            </StackPanel>
+        <s:TagVisualizer x:Name="Visualizer"    
                              VisualizationAdded="Visualizer_VisualizationAdded"
                              VisualizationRemoved="Visualizer_VisualizationRemoved">
-                    <s:TagVisualizer.Definitions>
-                        <s:TagVisualizationDefinition Value="0x1" 
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Value="0x1" 
                                               Source="PhoneVisualization.xaml"
-                                              LostTagTimeout="1000"
+                                              LostTagTimeout="2000"
                                               MaxCount="1"
                                               OrientationOffsetFromTag="0"
                                               PhysicalCenterOffsetFromTag="2,2" 
                                               TagRemovedBehavior="Fade"
                                               UsesTagOrientation="True"
                                               />
-                        <s:TagVisualizationDefinition Value="0x2" 
+                <s:TagVisualizationDefinition Value="0x2" 
                                               Source="PhoneVisualization.xaml"
-                                              LostTagTimeout="3000"
+                                              LostTagTimeout="2000"
                                               MaxCount="1"
                                               OrientationOffsetFromTag="0"
                                               PhysicalCenterOffsetFromTag="2,2" 
@@ -73,20 +74,37 @@
                                               UsesTagOrientation="True"
                                               />
 
-                    </s:TagVisualizer.Definitions>
-                    <Grid>
+            </s:TagVisualizer.Definitions>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"> 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <s:SurfaceListBox Name="PinnedItems" 
-                                        HorizontalAlignment="Left" 
-                                        Width="100"
+                <s:ScatterView Name="ImgScatterView" Background="Black"
+                                   HorizontalContentAlignment="Stretch"
+                                   VerticalContentAlignment="Stretch"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   s:TagVisualizer.IsTagVisualizationHost="True"
+                                   s:SurfaceDragDrop.DragCanceled="ImgScatterView_DragCanceled"
+                                   s:SurfaceDragDrop.DragCompleted="ImgScatterView_DragCompleted"
+                                   PreviewMouseDown="DragSourcePreviewInputDeviceDown"
+                                   PreviewTouchDown="DragSourcePreviewInputDeviceDown"
+                                   ItemTemplate="{StaticResource ScatterViewItemDataTemplate}">
+                        <s:ScatterView.Resources>
+                            <c:DragableImageItem x:Key="dragableImageItem" />
+                        </s:ScatterView.Resources>
+                    </s:ScatterView>
+                    <s:SurfaceListBox Name="PinnedItems" 
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Stretch"
+                                        Width="190"
+                                        Background="Black"
                                         AllowDrop="True"
                                         s:SurfaceDragDrop.DragEnter="PinnedItems_DragEnter"
                                         s:SurfaceDragDrop.DragLeave="PinnedItems_DragLeave"
-                                        ItemTemplate="{StaticResource SurfaceListBoxItemDataTemplate}">
+                                        ItemTemplate="{StaticResource SurfaceListBoxItemDataTemplate}" Margin="0,0,0,-1">
                             <s:SurfaceListBox.Resources>
                                 <c:PhoneThumbVisualization x:Key="phoneThumbVizualisation" />
                             </s:SurfaceListBox.Resources>
@@ -98,26 +116,7 @@
                             </s:SurfaceListBox.ItemContainerStyle>
                         </s:SurfaceListBox>
 
-                        <s:ScatterView Name="ImgScatterView"
-                                       Width="1000"
-                                       Height="700"
-                                       s:TagVisualizer.IsTagVisualizationHost="True"
-                                       s:SurfaceDragDrop.DragCanceled="ImgScatterView_DragCanceled"
-                                       s:SurfaceDragDrop.DragCompleted="ImgScatterView_DragCompleted"
-                                       PreviewMouseDown="DragSourcePreviewInputDeviceDown"
-                                       PreviewTouchDown="DragSourcePreviewInputDeviceDown"
-                                       ItemTemplate="{StaticResource ScatterViewItemDataTemplate}">
-                            <s:ScatterView.Resources>
-                                <c:DragableImageItem x:Key="dragableImageItem"/>
-                            </s:ScatterView.Resources>
-                        </s:ScatterView>
-                    </Grid>
-                </s:TagVisualizer>
-            </StackPanel>
-            <StackPanel Name="BottomPanel" Orientation="Horizontal" HorizontalAlignment="Center">
-                <s:SurfaceButton Name="ClearImagesButton" Width="200" Margin="8" Click="ClearImagesButton_Click">Clear Images</s:SurfaceButton>
-                <s:SurfaceButton Name="ShowSearchButton" Width="200" Margin="8" Click="ShowSearchButton_Click">Show Search</s:SurfaceButton>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+            </Grid>
+        </s:TagVisualizer>
+    </DockPanel>
 </s:SurfaceWindow>
