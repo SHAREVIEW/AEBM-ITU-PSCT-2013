@@ -25,6 +25,14 @@ namespace Exercise7._2
     {
         public long TagValue { get; set; }
         public BluetoothEndPoint BTEndpoint { get; set; }
+        public Color TagColor { get; set; }
+        public SolidColorBrush DisplayColor
+        { 
+            get {
+                return new SolidColorBrush(TagColor);
+            }
+        }
+
         public string ThumbName
         {
             get
@@ -34,17 +42,22 @@ namespace Exercise7._2
         }
 
         private Dictionary<long, BluetoothEndPoint> addressTagMapping;
+        private Dictionary<long, Color> colorMapping;
         public PhoneThumbVisualization()
         {
             InitializeComponent();
-            InitAddresses();
+            InitStaticValues();
         }
 
-        void InitAddresses()
+        void InitStaticValues()
         {
             addressTagMapping = new Dictionary<long, BluetoothEndPoint>();
             addressTagMapping.Add(1, new BluetoothEndPoint(new BluetoothAddress(0xF8DB7F65F19D), new Guid("a60f35f0-b93a-11de-8a39-08002009c666")));
-            addressTagMapping.Add(2, new BluetoothEndPoint(new BluetoothAddress(0x000000000000), new Guid("a60f35f0-b93a-11de-8a39-08002009c666")));
+            addressTagMapping.Add(2, new BluetoothEndPoint(new BluetoothAddress(0xF3EB2F63F23B), new Guid("a60f35f0-b93a-11de-8a39-08002009c666")));
+
+            colorMapping = new Dictionary<long, Color>();
+            colorMapping.Add(1, Colors.Blue);
+            colorMapping.Add(2, Colors.Red);
         }
 
         private void PhoneThumbVisualization_Loaded(object sender, RoutedEventArgs e)
@@ -53,19 +66,10 @@ namespace Exercise7._2
 
         public PhoneThumbVisualization(long tagValue)
         {
-            InitAddresses();
-            PhoneType = new Label();
-            if (addressTagMapping.ContainsKey(tagValue)) BTEndpoint = addressTagMapping[tagValue];
+            InitStaticValues();
+            TagColor = colorMapping.ContainsKey(tagValue) ? colorMapping[tagValue] : Colors.Transparent;
+            BTEndpoint = addressTagMapping.ContainsKey(tagValue) ? addressTagMapping[tagValue] : new BluetoothEndPoint(new BluetoothAddress(0x000000000000), new Guid("a60f35f0-b93a-11de-8a39-08002009c666"));
             TagValue = tagValue;
-            switch (tagValue)
-            {
-                case 1: PhoneType.Content = "iPhone 4";
-                    break;
-                case 2: PhoneType.Content = "Samsung S3";
-                    break;
-                default: PhoneType.Content = "Unknown phone";
-                    break;
-            }
         }
 
         private void StackPanel_Drop(object sender, SurfaceDragDropEventArgs e)

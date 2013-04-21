@@ -5,6 +5,5 @@
     Loaded="PhoneThumbVisualization_Loaded"
     AllowDrop="True">
     <Grid>
-        <Label Name="PhoneType">Unknown Phone</Label>
     </Grid>
 </s:TagVisualization>

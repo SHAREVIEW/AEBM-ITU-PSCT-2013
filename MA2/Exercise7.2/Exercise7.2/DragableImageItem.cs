@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Exercise7._2
 {
@@ -11,6 +12,13 @@ namespace Exercise7._2
         private string name;
         private bool canDrag;
         private BitmapSource image;
+        private SolidColorBrush tagColor;
+
+        public SolidColorBrush TagColor
+        {
+            get { return tagColor; }
+            set { tagColor = value; }
+        }
 
         public BitmapSource Image
         {
@@ -34,11 +42,12 @@ namespace Exercise7._2
             set;
         }
 
-        public DragableImageItem(string name, bool canDrag, BitmapSource image)
+        public DragableImageItem(string name, bool canDrag, BitmapSource image, Color tagColor)
         {
             this.name = name;
             this.canDrag = canDrag;
             this.image = image;
+            this.tagColor = new SolidColorBrush(tagColor);
         }
         public DragableImageItem()
         {

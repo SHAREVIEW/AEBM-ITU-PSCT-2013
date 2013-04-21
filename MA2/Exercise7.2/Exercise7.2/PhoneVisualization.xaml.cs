@@ -35,7 +35,7 @@ namespace Exercise7._2
             switch (this.VisualizedTag.Value)
             {
                 case 1:
-                    image = "Resources/iPhone.jpg";
+                    image = "Resources/android.png";
                     break;
                 case 2:
                     image = "Resources/Samsung.jpg";

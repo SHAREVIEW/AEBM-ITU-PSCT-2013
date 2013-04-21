@@ -11,12 +11,13 @@
                     <ImageBrush ImageSource="{Binding Path=Image}"></ImageBrush>
                 </Grid.Background>
                 <WrapPanel HorizontalAlignment="Left" Name="MarkingPanel" VerticalAlignment="Top">
+                    <Ellipse Width="10" Height="10" Fill="{Binding Path=TagColor}"></Ellipse>
                 </WrapPanel>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SurfaceListBoxItemDataTemplate">
             <Grid Background="Snow" Width="180" Margin="-5">
-                <Label Content="{Binding Path=ThumbName}" Foreground="Black"></Label>
+                <Label Content="{Binding Path=ThumbName}" Foreground="{Binding Path=DisplayColor}"></Label>
             </Grid>
         </DataTemplate>
         <Style x:Key="CursorStyle" TargetType="{x:Type ContentControl}">

@@ -8,7 +8,7 @@
    >
 
     <StackPanel Orientation="Vertical">
-        <s:SurfaceCheckBox Name="Lock" Foreground="Black" Content="Lock" HorizontalAlignment="Center" Checked="Lock_Checked"></s:SurfaceCheckBox>
+        <s:SurfaceCheckBox Name="Lock" Foreground="White" Content="Lock" HorizontalAlignment="Center" Checked="Lock_Checked"></s:SurfaceCheckBox>
         <Image Name="PhoneImage" Width="150"></Image>
     </StackPanel>
 

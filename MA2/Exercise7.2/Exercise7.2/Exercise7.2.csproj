@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="BluetoothHandler.cs" />
     <Compile Include="DragableImageItem.cs" />
+    <Compile Include="FlickrHandler.cs" />
     <Compile Include="PhoneThumbVisualization.xaml.cs">
       <DependentUpon>PhoneThumbVisualization.xaml</DependentUpon>
     </Compile>
@@ -119,6 +120,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\android.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

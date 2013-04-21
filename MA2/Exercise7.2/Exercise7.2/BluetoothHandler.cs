@@ -7,7 +7,7 @@ using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
 using System.Net.Sockets;
 using System.IO;
-
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Exercise7._2
@@ -42,7 +42,7 @@ namespace Exercise7._2
             nws.Flush();
         }
 
-        public static void GetImages(BluetoothEndPoint endpoint)
+        public static void GetImages(BluetoothEndPoint endpoint, Color tagColor)
         {
             InTheHand.Net.Sockets.BluetoothClient btc = new InTheHand.Net.Sockets.BluetoothClient();
             btc.Connect(endpoint);
@@ -64,7 +64,7 @@ namespace Exercise7._2
                 {
                     ms.Write(buffer, 0, read);
                 }
-                SurfaceWindow1.AddImage(System.Drawing.Image.FromStream(ms));
+                SurfaceWindow1.AddImage(System.Drawing.Image.FromStream(ms), tagColor);
             }
         }
 

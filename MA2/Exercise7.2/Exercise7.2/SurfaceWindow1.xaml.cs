@@ -43,7 +43,6 @@ namespace Exercise7._2
             InitializeComponent();
             pinned = new Dictionary<long, bool>();
             PhoneVisualization.PinnedEvent += Register_Pin;
-            // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
             Images = new ObservableCollection<DragableImageItem>();
             Thumbs = new ObservableCollection<PhoneThumbVisualization>();
@@ -62,30 +61,11 @@ namespace Exercise7._2
 
         protected void Thumbs_Changed(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            ImgScatterView.Dispatcher.Invoke(new Action(() => ImgScatterView.UpdateLayout()));
+            PinnedItems.Dispatcher.Invoke(new Action(() => PinnedItems.UpdateLayout()));
         }
 
         protected void ScatterViewItem_TouchDown(object sender, TouchEventArgs e)
         {
-            if (e.Device.GetIsFingerRecognized())
-            {
-                var grid = sender as Grid;
-                BitmapSource bms = ((grid.Background as ImageBrush).ImageSource as BitmapSource);
-                var addr = new BluetoothAddress(0xF8DB7F65F19D);
-                BluetoothEndPoint bte = new BluetoothEndPoint(addr, new Guid("a60f35f0-b93a-11de-8a39-08002009c666"));
-                BluetoothHandler.SendBluetooth(bte, bms);
-            }
-            if (e.Device.GetIsTagRecognized())
-            {
-                var item = (Grid)sender;
-                var ellipse = new Ellipse();
-                ellipse.Name = "Ellipse";
-                ellipse.Width = 10;
-                ellipse.Height = 10;
-                ellipse.Fill = new SolidColorBrush(tagColors[e.Device.GetTagData().Value]);
-                (item.Children.Cast<FrameworkElement>().First(uie => uie.Name == "MarkingPanel") as WrapPanel).Children.Add(ellipse);
-                item.UpdateLayout();
-            }
         }
 
         /// <summary>
@@ -159,60 +139,7 @@ namespace Exercise7._2
             ImgScatterView.Visibility = Visibility.Visible;
             SearchBarPanel.Visibility = Visibility.Hidden;
             string query = QueryBox.Text;
-            Task.Factory.StartNew(() => GetImages(query));
-        }
-
-        public void GetImages(string searchTerm)
-        {
-            Flickr fl = new Flickr("8704e391e50a52774ee2bf393c35b10c");
-
-            PhotoSearchOptions opt = new PhotoSearchOptions();
-            opt.Text = searchTerm;
-            opt.PerPage = 10;
-            opt.Page = 1;
-            var photos = fl.PhotosSearch(opt);
-            foreach (Photo p in photos)
-            {
-                System.Drawing.Image img = DownloadImage(p.LargeUrl);
-
-                AddImage(img);
-            }
-        }
-
-        public System.Drawing.Image DownloadImage(string _URL)
-        {
-            System.Drawing.Image _tmpImage = null;
-
-            try
-            {
-                // Open a connection
-                System.Net.HttpWebRequest _HttpWebRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(_URL);
-
-                _HttpWebRequest.AllowWriteStreamBuffering = true;
-
-                // set timeout for 20 seconds (Optional)
-                _HttpWebRequest.Timeout = 20000;
-
-                // Request response:
-                System.Net.WebResponse _WebResponse = _HttpWebRequest.GetResponse();
-
-                // Open data stream:
-                System.IO.Stream _WebStream = _WebResponse.GetResponseStream();
-
-                // convert webstream to image
-                _tmpImage = System.Drawing.Image.FromStream(_WebStream);
-
-                // Cleanup
-                _WebResponse.Close();
-            }
-            catch (Exception _Exception)
-            {
-                // Error
-                Console.WriteLine("Exception caught in process: {0}", _Exception.ToString());
-                return null;
-            }
-
-            return _tmpImage;
+            Task.Factory.StartNew(() => FlickrHandler.GetImages(query));
         }
 
         private void ShowSearchButton_Click(object sender, RoutedEventArgs e)
@@ -226,7 +153,7 @@ namespace Exercise7._2
             Images.Clear();
         }
 
-        public static void AddImage(System.Drawing.Image img)
+        public static void AddImage(System.Drawing.Image img, Color tagColor)
         {
             var oldBitmap = img as System.Drawing.Bitmap ?? new System.Drawing.Bitmap(img);
             var bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
@@ -235,7 +162,7 @@ namespace Exercise7._2
              new Int32Rect(0, 0, oldBitmap.Width, oldBitmap.Height),
              null);
             bitmapSource.Freeze();
-            scw.Dispatcher.Invoke(new Action(() => Images.Add(new DragableImageItem("", true, bitmapSource))));
+            scw.Dispatcher.Invoke(new Action(() => Images.Add(new DragableImageItem("", true, bitmapSource, tagColor))));
         }
 
         private void Visualizer_VisualizationAdded(object sender, TagVisualizerEventArgs e)
@@ -249,12 +176,11 @@ namespace Exercise7._2
                     ptv = i;
                 }
             }
-            if (ptv != null)
+            if (ptv == null)
             {
-                Thumbs.Remove(ptv);
+                PhoneThumbVisualization newPtv = new PhoneThumbVisualization(e.TagVisualization.VisualizedTag.Value);
+                scw.Dispatcher.Invoke(new Action(() => Thumbs.Add(newPtv)));
             }
-            PhoneThumbVisualization newPtv = new PhoneThumbVisualization(e.TagVisualization.VisualizedTag.Value);
-            Thumbs.Add(newPtv);
         }
 
         private void Register_Pin(object sender, PinnedEventArgs e)
@@ -296,7 +222,7 @@ namespace Exercise7._2
             ScatterViewItem item = data.DraggedElement as ScatterViewItem;
             if (item != null)
             {
-                item.Visibility = Visibility.Hidden;
+                item.Visibility = Visibility.Visible;
                 item.Orientation = e.Cursor.GetOrientation(this);
                 item.Center = e.Cursor.GetPosition(this);
             }
@@ -304,10 +230,6 @@ namespace Exercise7._2
 
         private void ImgScatterView_DragCompleted(object sender, SurfaceDragCompletedEventArgs e)
         {
-            if (e.Cursor.Effects == DragDropEffects.Move)
-            {
-                Images.Remove(e.Cursor.Data as DragableImageItem);
-            }
         }
 
         private void PinnedItems_DragEnter(object sender, SurfaceDragDropEventArgs e)
