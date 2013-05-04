@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;dk.itu.psct.activityrecorder.recording.java&apos; to &apos;Recording.java&apos;&#x0A;- Original project: &apos;ActivityRecorder&apos;&#x0A;- Original element: &apos;dk.itu.psct.activityrecorder.recording.java&apos;&#x0A;- Renamed element: &apos;dk.itu.psct.activityrecorder.Recording.java&apos;" description="Rename compilation unit &apos;recording.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;dk.itu.psct.activityrecorder{recording.java" name="Recording.java" references="false" stamp="1367578532843" version="1.0"/>
+</session>

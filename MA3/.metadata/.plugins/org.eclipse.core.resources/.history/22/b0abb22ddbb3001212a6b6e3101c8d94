@@ -1,0 +1,103 @@
+package dk.itu.psct.activityrecorder;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements SensorEventListener {
+	SensorManager mSensorManager;
+	Sensor mSensor;
+	private boolean mInitialized;
+	private float mLastX, mLastY, mLastZ;
+	private final float NOISE = (float) 2.0;
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+    	mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    
+    boolean recording;
+    public void startRecording(View view)
+    {
+    	if (!recording)
+    	{
+    		mSensorManager.registerListener(this, mSensor, 20);
+    		recording = true;
+    	} else {
+    		mSensorManager.unregisterListener(this);
+    		recording = false;
+    	}
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+	}
+    
+    @Override
+	protected void onPause() {
+    	super.onPause();
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// nevermind in this demo
+		
+	}
+
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		TextView tvX= (TextView)findViewById(R.id.x_axis);
+
+		TextView tvY= (TextView)findViewById(R.id.y_axis);
+
+		TextView tvZ= (TextView)findViewById(R.id.z_axis);
+		
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+		if (!mInitialized) {
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+		
+			mInitialized = true;
+		} else {
+			float deltaX = Math.abs(mLastX - x);
+			float deltaY = Math.abs(mLastY - y);
+			float deltaZ = Math.abs(mLastZ - z);
+			if (deltaX < NOISE) deltaX = (float)0.0;
+			if (deltaY < NOISE) deltaY = (float)0.0;
+			if (deltaZ < NOISE) deltaZ = (float)0.0;
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+		}
+		
+		tvX.setText(mLastX + "");
+		tvY.setText(mLastY + "");
+		tvZ.setText(mLastZ + "");
+		
+	}
+    
+}

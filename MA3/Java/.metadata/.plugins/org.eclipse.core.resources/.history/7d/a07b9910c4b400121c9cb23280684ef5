@@ -1,0 +1,17 @@
+package dk.itu.psct.activitytracker;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CSVServlet extends HttpServlet {
+	private static final long serialVersionUID = 8420632591767049736L;
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	{
+	
+	}
+
+}

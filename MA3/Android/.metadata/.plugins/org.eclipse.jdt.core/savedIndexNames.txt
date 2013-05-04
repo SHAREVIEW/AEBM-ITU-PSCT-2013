@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/.metadata/.plugins/org.eclipse.jdt.core
+3096708806.index
+3069456398.index
+2419206149.index

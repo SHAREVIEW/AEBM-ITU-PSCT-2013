@@ -1,0 +1,31 @@
+package dk.itu.psct.activitytracker;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class RecordingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	  {
+  		String name = req.getParameter("name");
+  		String timestamp = req.getParameter("timestamp");
+		String xString = req.getParameter("x");
+		String yString = req.getParameter("y");
+		String zString = req.getParameter("z");
+		float x,y,z;
+		
+		x = xString != null ? Float.parseFloat(xString) : 0;
+		y = yString != null ? Float.parseFloat(yString) : 0;
+		z = zString != null ? Float.parseFloat(zString) : 0;
+  		
+		
+		
+		
+  		resp.setContentType("text/plain");
+  		resp.getWriter().println("Recording saved.");
+	  }
+}

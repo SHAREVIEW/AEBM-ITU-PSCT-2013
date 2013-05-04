@@ -1,0 +1,195 @@
+package dk.itu.psct.activityrecorder;
+
+import java.util.Calendar;
+import java.util.LinkedList;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements SensorEventListener {
+	SensorManager mSensorManager;
+	Sensor mSensor;
+	private boolean mInitialized;
+	private float mLastX, mLastY, mLastZ;
+	private final float NOISE = (float) 2.0;
+	private LinkedList<Recording> recordingQueue;
+	private String recordingName = "";
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+    	mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    	recordingQueue = new LinkedList<Recording>();
+    	
+    	Runnable r = new Runnable() {
+			
+			@Override
+			public void run() {
+				while (true)
+				{
+					if (recordingQueue.size() > 0)
+					{
+						processRecording(recordingQueue.poll());
+					}
+				}
+				
+			}
+		};
+		new Thread(r).start();
+    	
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    
+    boolean recording;
+    public void startRecording(View view) throws InterruptedException
+    {
+    	
+    	TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+    	Button btn = (Button) findViewById(R.id.button1);
+    	if (!recording)
+    	{
+    		EditText nameLabel = (EditText) findViewById(R.id.nameField);
+    		if (nameLabel.getText().length() == 0)
+    		{
+    			errorMessage.setText("Please specify a name");
+    			return;
+    		} else {
+    			errorMessage.setText("Get ready to start on beep!");
+    			errorMessage.invalidate();
+    			Thread.sleep(100);
+    			recordingName = getCurrentTimeAsString() + " - " + nameLabel.getText().toString();
+    			
+    	    	Runnable r = new Runnable() {
+    				
+    				@Override
+    				public void run() {
+    					startRecording();
+    				}
+    			};
+    			new Thread(r).start();
+    	    	
+    			
+    			
+    			btn.setText("Stop recording");
+    			errorMessage.setText("Recording..");
+    		}
+
+    	} else {
+    		mSensorManager.unregisterListener(this);
+    		recording = false;
+    		errorMessage.setText("");
+    		recordingName = "";
+			btn.setText("Start recording");
+    	}
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+	}
+    
+    @Override
+	protected void onPause() {
+    	super.onPause();
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// nevermind in this demo
+	}
+	
+	public void startRecording()
+	{
+		// Play a sound to indicate start of capture.
+		try {
+			Thread.sleep(5000);
+	        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+	        Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+	        r.play();
+		} catch (Exception e1){
+			e1.printStackTrace();
+		}
+		
+		mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    	recording = true;
+	}
+
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		TextView tvX= (TextView)findViewById(R.id.x_axis);
+
+		TextView tvY= (TextView)findViewById(R.id.y_axis);
+
+		TextView tvZ= (TextView)findViewById(R.id.z_axis);
+		
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+		if (!mInitialized) {
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+		
+			mInitialized = true;
+		} else {
+			float deltaX = Math.abs(mLastX - x);
+			float deltaY = Math.abs(mLastY - y);
+			float deltaZ = Math.abs(mLastZ - z);
+			if (deltaX < NOISE) deltaX = (float)0.0;
+			if (deltaY < NOISE) deltaY = (float)0.0;
+			if (deltaZ < NOISE) deltaZ = (float)0.0;
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+		}
+		
+		addRecording(x, y, z);
+		
+		tvX.setText(mLastX + "");
+		tvY.setText(mLastY + "");
+		tvZ.setText(mLastZ + "");
+	}
+	
+	void addRecording(float x, float y, float z)
+	{
+		recordingQueue.addLast(new Recording(recordingName, getCurrentTimeAsString(), x,y,z));
+	}
+	
+	public String getCurrentTimeAsString()
+	{
+		Calendar c = Calendar.getInstance(); 
+		int second = c.get(Calendar.MILLISECOND);
+		int minute = c.get(Calendar.MINUTE);
+		int hour = c.get(Calendar.HOUR_OF_DAY);
+		return hour+":"+minute+":"+second;
+	}
+	
+	public void processRecording(Recording rec)
+	{
+		System.out.println(rec);
+	}
+    
+}
