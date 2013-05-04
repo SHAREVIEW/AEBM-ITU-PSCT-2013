@@ -1,0 +1,15 @@
+﻿<s:TagVisualization x:Class="Exercise7._2.PhoneVisualization"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="http://schemas.microsoft.com/surface/2008"
+    Loaded="PhoneVisualization_Loaded"
+    LostTag="TagVisualization_LostTag"
+    
+   >
+
+    <StackPanel Orientation="Vertical">
+        <s:SurfaceCheckBox Name="Lock" Foreground="White" Content="Lock" HorizontalAlignment="Center" Checked="Lock_Checked"></s:SurfaceCheckBox>
+        <Image Name="PhoneImage" Width="150"></Image>
+    </StackPanel>
+
+</s:TagVisualization>
