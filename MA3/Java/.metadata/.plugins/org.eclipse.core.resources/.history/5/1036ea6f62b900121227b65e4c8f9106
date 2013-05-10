@@ -1,0 +1,5 @@
+package dk.itu.psct.activitytracker;
+
+public class ListAllServlet {
+
+}

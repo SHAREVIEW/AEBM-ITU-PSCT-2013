@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="11" version="2.0">
+<workbench progressCount="23" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1440" x="0" y="33">
+<window height="900" width="1440" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="250"/>
@@ -18,7 +18,7 @@
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="62" y="22"/>
 <coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="98" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="54" y="22"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="242" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
@@ -45,29 +45,33 @@
 <editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="ActivityRecorder Manifest" path="/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/ActivityRecorder/AndroidManifest.xml" title="ActivityRecorder Manifest" tooltip="ActivityRecorder/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ActivityRecorder/AndroidManifest.xml"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java" title="MainActivity.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5050" selectionTopPixel="2685"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Recording.java" partName="Recording.java" path="/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java" title="Recording.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Recording.java" partName="Recording.java" path="/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java" title="Recording.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1629" selectionTopPixel="1080"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1425" selectionTopPixel="720"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Android/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java" title="MainActivity.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5042" selectionTopPixel="2188"/>
 </editor>
 </editors>
 <views>
-<view id="com.android.ide.eclipse.ddms.views.DeviceView" partName="Devices"/>
+<view id="com.android.ide.eclipse.ddms.views.DeviceView" partName="Devices">
+<viewState/>
+</view>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
-<view id="com.android.ide.eclipse.ddms.views.ThreadView" partName="Threads"/>
+<view id="com.android.ide.eclipse.ddms.views.ThreadView" partName="Threads">
+<viewState/>
+</view>
 <view id="org.eclipse.cdt.debug.ui.executablesView" partName="Executables"/>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
 <view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
 <viewState/>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
 <viewState/>
 </view>
-<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
@@ -80,7 +84,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Errors (3 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -126,7 +130,7 @@
 <view id="com.android.ide.eclipse.ddms.views.AllocTrackerView" partName="Allocation Tracker"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="com.android.ide.eclipse.ddms.views.LogCatView" activePerspective="org.eclipse.debug.ui.DebugPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.debug.ui.DebugPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="0" fixed="0" version="0.016">
 <descriptor class="com.android.ide.eclipse.ddms.Perspective" id="com.android.ide.eclipse.ddms.Perspective" label="DDMS"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -159,6 +163,7 @@
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="com.android.ide.eclipse.ddms.views.LogCatView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="com.android.ide.eclipse.ddms.views.DeviceView"/>
 <view id="com.android.ide.eclipse.ddms.views.ThreadView"/>
 <view id="com.android.ide.eclipse.ddms.views.HeapView"/>
@@ -168,21 +173,38 @@
 <view id="com.android.ide.eclipse.ddms.views.EmulatorControlView"/>
 <view id="com.android.ide.eclipse.ddms.views.SysInfoView"/>
 <fastViewBars/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="devices">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="com.android.ide.eclipse.ddms.views.DeviceView:*" label="LabelNotFound"/>
+<layout>
+<mainWindow>
+<info folder="true" part="devices">
+<folder activePageID="com.android.ide.eclipse.ddms.views.DeviceView" appearance="2" expanded="2">
 <page content="com.android.ide.eclipse.ddms.views.DeviceView" label="Devices"/>
+<page content="com.android.ide.eclipse.ddms.views.DeviceView:*" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="762" ratioRight="254" relationship="2" relative="devices">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="762" ratioRight="254" relationship="2" relative="devices">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="logcat" ratio="0.79941434" ratioLeft="546" ratioRight="137" relationship="4" relative="devices">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="com.android.ide.eclipse.ddms.views.LogCatView:*" label="LabelNotFound"/>
+<info folder="true" part="logcat" ratio="0.79941434" ratioLeft="546" ratioRight="137" relationship="4" relative="devices">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LogCat"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="com.android.ide.eclipse.ddms.views.LogCatView:*" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.2992126" ratioLeft="304" ratioRight="712" relationship="2" relative="devices"/>
-<info folder="true" part="ddms-detail" ratio="0.5" ratioLeft="356" ratioRight="356" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="com.android.ide.eclipse.ddms.views.ThreadView:*" label="LabelNotFound"/>
+<info folder="true" part="ddms-detail" ratio="0.5" ratioLeft="356" ratioRight="356" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="com.android.ide.eclipse.ddms.views.ThreadView" appearance="2" expanded="2">
 <page content="com.android.ide.eclipse.ddms.views.ThreadView" label="Threads"/>
 <page content="com.android.ide.eclipse.ddms.views.HeapView" label="Heap"/>
 <page content="com.android.ide.eclipse.ddms.views.AllocTrackerView" label="Allocation Tracker"/>
@@ -190,6 +212,16 @@
 <page content="com.android.ide.eclipse.ddms.views.FileExplorerView" label="File Explorer"/>
 <page content="com.android.ide.eclipse.ddms.views.EmulatorControlView" label="Emulator Control"/>
 <page content="com.android.ide.eclipse.ddms.views.SysInfoView" label="System Information"/>
+<page content="com.android.ide.eclipse.ddms.views.ThreadView:*" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+</presentation>
 </folder>
 </info>
 </mainWindow>
@@ -371,7 +403,7 @@
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="org.eclipse.debug.internal.ui.ConsoleFolderView" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.3"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.29749104"/>
 <view id="org.eclipse.ui.views.TaskList" ratio="0.3"/>
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.cdt.debug.ui.executablesView" ratio="0.3"/>
@@ -399,7 +431,7 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.5088235" ratioLeft="346" ratioRight="334" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
@@ -452,137 +484,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/ActivityRecorder/AndroidManifest.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java"/>
 <editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=ActivityRecorder/\/Applications\/eclipse\/adt-bundle-mac-x86_64\/sdk\/platforms\/android-17\/android.jar&lt;java.lang(ThreadGroup.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=ActivityRecorder/\/Applications\/eclipse\/adt-bundle-mac-x86_64\/sdk\/platforms\/android-17\/android.jar&lt;java.lang(ThreadGroup.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=ActivityRecorder/\/Applications\/eclipse\/adt-bundle-mac-x86_64\/sdk\/platforms\/android-17\/android.jar&lt;java.net(URI.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
 </editors>
-<item historyLabel="ActivityRecorder Manifest" index="0"/>
-<item historyLabel="MainActivity.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1220" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1669" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="1">
-<position info="not_deleted" x="5072" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="1">
-<position info="not_deleted" x="5050" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1143" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1275" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1299" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1328" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1453" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1299" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1328" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1453" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1299" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1328" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1453" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1299" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1328" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1453" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1299" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1328" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1453" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1666" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1628" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="1">
-<position info="not_deleted" x="5050" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
-<position info="not_deleted" x="1599" y="0"/>
-</item>
-<item historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1629" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="1">
+<item historyLabel="MainActivity.java" index="0">
 <position info="not_deleted" x="5050" y="0"/>
 </item>
-<item historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1599" y="0"/>
 </item>
-<item historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1652" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="1">
+<item historyLabel="MainActivity.java" index="0">
 <position info="not_deleted" x="5050" y="0"/>
 </item>
-<item historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1599" y="0"/>
 </item>
-<item historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1629" y="0"/>
 </item>
-<item historyLabel="ThreadGroup.class" index="3">
+<item historyLabel="ThreadGroup.class" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="Recording.java" index="2">
+<item historyLabel="Recording.java" index="1">
 <position info="not_deleted" x="1629" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="3">
+<position info="not_deleted" x="5050" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1198" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1372" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1396" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1425" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1481" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1696" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1255" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="3">
+<position info="not_deleted" x="5050" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1198" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1372" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1396" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1425" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1481" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1696" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1728" y="0"/>
+</item>
+<item historyLabel="ThreadGroup.class" index="4">
+<position/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1722" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="5">
+<position info="not_deleted" x="5050" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1198" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1372" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1396" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1425" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1481" y="0"/>
+</item>
+<item historyLabel="URI.class" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ThreadGroup.class" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1481" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1215" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="7">
+<position info="not_deleted" x="5050" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1198" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1425" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1481" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1550" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1607" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1666" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1396" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1758" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="7">
+<position info="not_deleted" x="5050" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1198" y="0"/>
+</item>
+<item historyLabel="Recording.java" index="1">
+<position info="not_deleted" x="1425" y="0"/>
+</item>
+<item active="true" historyLabel="MainActivity.java" index="7">
+<position info="not_deleted" x="5050" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -603,14 +662,17 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java">
+<persistable path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="URI.class" tooltip="java.net.URI">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=ActivityRecorder/\/Applications\/eclipse\/adt-bundle-mac-x86_64\/sdk\/platforms\/android-17\/android.jar&lt;java.net(URI.class"/>
+</file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="ThreadGroup.class" tooltip="java.lang.ThreadGroup">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=ActivityRecorder/\/Applications\/eclipse\/adt-bundle-mac-x86_64\/sdk\/platforms\/android-17\/android.jar&lt;java.lang(ThreadGroup.class"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Recording.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java">
 <persistable path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/Recording.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java">
-<persistable path="/ActivityRecorder/src/dk/itu/psct/activityrecorder/MainActivity.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="ActivityRecorder/AndroidManifest.xml">
 <persistable path="/ActivityRecorder/AndroidManifest.xml"/>

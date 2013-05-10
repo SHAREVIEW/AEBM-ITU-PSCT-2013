@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.DatastoreService"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.DatastoreServiceFactory"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.Key"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.KeyFactory"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.Entity"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.Query"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.FetchOptions"/>
+<fullyQualifiedTypeName name="com.google.appengine.api.datastore.FetchOptions.Builder"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 </qualifiedTypeNameHistroy>

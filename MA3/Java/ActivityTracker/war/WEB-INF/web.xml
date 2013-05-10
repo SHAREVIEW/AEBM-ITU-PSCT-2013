@@ -23,6 +23,18 @@
   <servlet-name>CSVServlet</servlet-name>
   <url-pattern>/recordings/retrieve</url-pattern>
  </servlet-mapping>
+  <servlet>
+  <servlet-name>ListAllServlet</servlet-name>
+  <servlet-class>dk.itu.psct.activitytracker.ListAllServlet</servlet-class>
+  <init-param>
+   <param-name>services</param-name>
+   <param-value/>
+  </init-param>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>ListAllServlet</servlet-name>
+  <url-pattern>/recordings/all</url-pattern>
+ </servlet-mapping>
  <servlet>
   <servlet-name>SystemServiceServlet</servlet-name>
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>

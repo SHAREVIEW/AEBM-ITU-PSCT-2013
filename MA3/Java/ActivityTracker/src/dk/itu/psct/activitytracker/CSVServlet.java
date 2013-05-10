@@ -21,9 +21,11 @@ public class CSVServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
 		String name = req.getParameter("name");
+
 		List<Entity> records = getRecordings(name);
 		
   		resp.setContentType("text/csv");
+  		resp.setHeader("Content-Disposition", "attachment; filename=\"" + name + ".csv\"");
   		resp.getWriter().println("timestamp;x;y;z");
   		for (Entity r : records)
   		{

@@ -1,12 +1,10 @@
 package dk.itu.psct.activityrecorder;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -60,7 +58,7 @@ public class Recording {
 	
 	public void sendRecording()
 	{
-		String url = "http://pscttracker.appspot.com/recordings?name=" + name + "&timestamp=" + timeStamp + "&x=" + x  + "&y=" + y + "&z=" + z;
+		String url = "http://pscttracker.appspot.com/recordings/save?name=" + name + "&timestamp=" + timeStamp + "&x=" + x  + "&y=" + y + "&z=" + z;
 		url = url.replace(" ", "%20");
 		
 		boolean sent = false;

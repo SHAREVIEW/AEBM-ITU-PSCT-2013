@@ -25,6 +25,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private float mLastX, mLastY, mLastZ;
 	private final float NOISE = (float) 2.0;
 	private LinkedList<Recording> recordingQueue;
+	private LinkedList<Recording> transferQueue;
 	private String recordingName = "";
 	
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_main);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
     	mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    	transferQueue = new LinkedList<Recording>();
     	recordingQueue = new LinkedList<Recording>();
     	
     	Runnable r = new Runnable() {
@@ -41,9 +43,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 			public void run() {
 				while (true)
 				{
-					if (recordingQueue.size() > 0)
+					if (transferQueue.size() > 0)
 					{
-						processRecording(recordingQueue.poll());
+						processRecording(transferQueue.poll());
 					}
 				}
 				
@@ -61,6 +63,33 @@ public class MainActivity extends Activity implements SensorEventListener {
         return true;
     }
     
+    public void sendClick(View view)
+    {
+		TextView message = (TextView) findViewById(R.id.errorMessage);
+    	if (!recording && recordingQueue.size() > 0)
+    	{
+    		transferQueue.addAll(recordingQueue);
+    		message.setText("Transfer initiated.");
+    	} else if (recording) 
+    	{
+    		message.setText("Still recording..");
+    	} else if (recordingQueue.size() == 0)
+    	{
+    		message.setText("No recordings saved.");
+    	}
+    }
+    
+    public void deleteClick(View view)
+    {
+    	TextView message = (TextView) findViewById(R.id.errorMessage);
+    	if (recordingQueue.size() > 0)
+    	{
+    		recordingQueue.clear();
+    		message.setText("Recording(s) deleted.");
+    	} else {
+    		message.setText("No recordings saved.");
+    	}
+    }
     
     boolean recording;
     public void startRecording(View view) throws InterruptedException
@@ -136,7 +165,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		    	TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
 		    	Button btn = (Button) findViewById(R.id.button1);
 		    	btn.setText("Stop recording");
-				errorMessage.setText("Recording..");	
+				errorMessage.setText("Recording.. Name: "  + recordingName);	
 			}
 		});
 	}

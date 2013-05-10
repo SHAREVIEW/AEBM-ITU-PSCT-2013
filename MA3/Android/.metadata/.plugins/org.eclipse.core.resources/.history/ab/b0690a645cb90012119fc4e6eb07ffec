@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ActivityRecorder</string>
+    <string name="action_settings">Settings</string>
+    <string name="record" >Start Recording</string>
+    <string name="send">Send Recording</string>
+    <string name="delete">Delete Recording</string>
+
+</resources>

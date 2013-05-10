@@ -6,6 +6,7 @@
 <fullyQualifiedTypeName name="org.apache.http.StatusLine"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpGet"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="org.apache.http.client.ClientProtocolException"/>
 </qualifiedTypeNameHistroy>

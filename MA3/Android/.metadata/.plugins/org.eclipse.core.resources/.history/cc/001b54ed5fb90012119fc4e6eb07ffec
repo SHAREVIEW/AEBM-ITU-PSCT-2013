@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ActivityRecorder</string>
+    <string name="action_settings">Settings</string>
+    <string name="record" >Start Recording</string>
+    <string name="send">Send Rec.</string>
+    <string name="delete">Delete Rec.</string>
+    <string name="xaxis">X-axis</string>
+    <string name="yaxis">Y-axis</string>
+    <string name="zaxis">Z-axis</string>
+
+</resources>

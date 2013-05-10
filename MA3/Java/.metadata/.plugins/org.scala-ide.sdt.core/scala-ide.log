@@ -31,3 +31,21 @@ INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive 
 INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-web.xml
 2013-05-04 14:50:31,059 ERROR [Worker-2] - System.err - May 04, 2013 2:50:31 PM com.google.apphosting.utils.config.AbstractConfigXmlReader readConfigXml
 INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/web.xml
+2013-05-10 13:05:27,533 ERROR [Worker-1] - System.err - May 10, 2013 1:05:27 PM com.google.apphosting.utils.config.AppEngineWebXmlReader readAppEngineWebXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-web.xml
+2013-05-10 13:05:27,542 ERROR [Worker-1] - System.err - May 10, 2013 1:05:27 PM com.google.apphosting.utils.config.AbstractConfigXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/web.xml
+2013-05-10 13:05:27,552 ERROR [Worker-1] - System.err - May 10, 2013 1:05:27 PM com.google.apphosting.utils.config.IndexesXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+2013-05-10 13:41:30,135 ERROR [Worker-46] - System.err - May 10, 2013 1:41:30 PM com.google.apphosting.utils.config.AppEngineWebXmlReader readAppEngineWebXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-web.xml
+2013-05-10 13:41:30,137 ERROR [Worker-46] - System.err - May 10, 2013 1:41:30 PM com.google.apphosting.utils.config.AbstractConfigXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/web.xml
+2013-05-10 13:41:30,139 ERROR [Worker-46] - System.err - May 10, 2013 1:41:30 PM com.google.apphosting.utils.config.IndexesXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+2013-05-10 14:01:23,144 ERROR [Worker-60] - System.err - May 10, 2013 2:01:23 PM com.google.apphosting.utils.config.AppEngineWebXmlReader readAppEngineWebXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-web.xml
+2013-05-10 14:01:23,147 ERROR [Worker-60] - System.err - May 10, 2013 2:01:23 PM com.google.apphosting.utils.config.AbstractConfigXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/web.xml
+2013-05-10 14:01:23,148 ERROR [Worker-60] - System.err - May 10, 2013 2:01:23 PM com.google.apphosting.utils.config.IndexesXmlReader readConfigXml
+INFO: Successfully processed /Users/emilbechmadsen/Documents/Kandidat/Pervasive Computing/AEBM-ITU-PSCT-2013/MA3/Java/ActivityTracker/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
