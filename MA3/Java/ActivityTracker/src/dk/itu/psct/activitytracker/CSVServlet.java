@@ -20,16 +20,30 @@ public class CSVServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
-		String name = req.getParameter("name");
+		String name = null;
+		List<Entity> records = null;
+		if (req.getParameterMap().containsKey("name"))
+		{	 
+			name = req.getParameter("name");
+			records = getRecordings(name);
+		} else {
+			records = getAllRecordings();			
+		}
+		
+		String type = "";
+		if (req.getParameterMap().containsKey("type"))
+		{
+			type = req.getParameter("type");
+		}
 
-		List<Entity> records = getRecordings(name);
 		
   		resp.setContentType("text/csv");
-  		resp.setHeader("Content-Disposition", "attachment; filename=\"" + name + ".csv\"");
-  		resp.getWriter().println("timestamp;x;y;z");
+  		resp.setHeader("Content-Disposition", "attachment; filename=\"" + (name == null ? "Recordings" : name) + ".csv\"");
+  		resp.getWriter().println("timestamp,x,y,z,activity_label");
+  		
   		for (Entity r : records)
   		{
-  			resp.getWriter().println(r.getProperty("timestamp") +";"+r.getProperty("x")+";"+r.getProperty("y")+";"+r.getProperty("z"));
+  			resp.getWriter().println(r.getProperty("timestamp") +","+r.getProperty("x")+","+r.getProperty("y")+","+r.getProperty("z") + ","+type);
   		}
   		resp.getWriter().flush();
 	}
@@ -39,6 +53,17 @@ public class CSVServlet extends HttpServlet {
 		  Key recordingKey = KeyFactory.createKey("Recording", name);
 		  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		  Query query = new Query("Recording", recordingKey);
+		  query.addSort("timestamp");
+		  List<Entity> recordings = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+		  
+		  return recordings;
+	  }
+	  
+	  public List<Entity> getAllRecordings()
+	  {
+		  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		  Query query = new Query("Recording");
+		  query.addSort("timestamp");
 		  List<Entity> recordings = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 		  
 		  return recordings;

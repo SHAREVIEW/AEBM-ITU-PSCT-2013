@@ -1,7 +1,0 @@
-package dk.itu.psct.activitytracker;
-
-import javax.servlet.http.HttpServlet;
-
-public class CSVServlet extends HttpServlet {
-
-}

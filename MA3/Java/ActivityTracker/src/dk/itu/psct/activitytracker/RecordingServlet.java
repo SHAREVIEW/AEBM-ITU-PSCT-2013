@@ -32,15 +32,15 @@ public class RecordingServlet extends HttpServlet {
 		y = yString != null ? Float.parseFloat(yString) : 0;
 		z = zString != null ? Float.parseFloat(zString) : 0;
   		
-		saveRecording(name, timestamp, x, y, z);
-		List<Entity> recs = getRecordings(name);
+		
+		Entity rec = saveRecording(name, timestamp, x, y, z);
 		
 		
   		resp.setContentType("text/plain");
-  		resp.getWriter().println(recs);
+  		resp.getWriter().println(rec);
 	  }
 	  
-	  public void saveRecording(String name, String timestamp, float x, float y, float z)
+	  public Entity saveRecording(String name, String timestamp, float x, float y, float z)
 	  {
 	        Key recordingKey = KeyFactory.createKey("Recording", name);
 	        
@@ -53,6 +53,7 @@ public class RecordingServlet extends HttpServlet {
 	        
 	        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	        datastore.put(recording);
+	        return recording;
 	  }
 	  
 	  public List<Entity> getRecordings(String name)

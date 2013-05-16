@@ -58,7 +58,7 @@ public class Recording {
 	
 	public void sendRecording()
 	{
-		String url = "http://pscttracker.appspot.com/recordings/save?name=" + name + "&timestamp=" + timeStamp + "&x=" + x  + "&y=" + y + "&z=" + z;
+		String url = "http://psctacttracker.appspot.com/recordings/save?name=" + name + "&timestamp=" + timeStamp + "&x=" + x  + "&y=" + y + "&z=" + z;
 		url = url.replace(" ", "%20");
 		
 		boolean sent = false;

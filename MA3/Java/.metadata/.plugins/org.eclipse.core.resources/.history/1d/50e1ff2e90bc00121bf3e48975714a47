@@ -1,0 +1,58 @@
+package dk.itu.psct.activitytracker;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+
+public class CSVServlet extends HttpServlet {
+	private static final long serialVersionUID = 8420632591767049736L;
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	{
+		String name = req.getParameter("name");
+		if (name == "" || name == null)
+		{
+			
+		}
+		List<Entity> records = getRecordings(name);
+		
+  		resp.setContentType("text/csv");
+  		resp.setHeader("Content-Disposition", "attachment; filename=\"" + (name == null ? "Recordings" : name) + ".csv\"");
+  		resp.getWriter().println("timestamp;x;y;z");
+  		for (Entity r : records)
+  		{
+  			resp.getWriter().println(r.getProperty("timestamp") +";"+r.getProperty("x")+";"+r.getProperty("y")+";"+r.getProperty("z"));
+  		}
+  		resp.getWriter().flush();
+	}
+
+	  public List<Entity> getRecordings(String name)
+	  {
+		  Key recordingKey = KeyFactory.createKey("Recording", name);
+		  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		  Query query = new Query("Recording", recordingKey);
+		  List<Entity> recordings = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+		  
+		  return recordings;
+	  }
+	  
+	  public List<Entity> getAllRecordings()
+	  {
+		  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		  Query query = new Query("Recording");
+		  List<Entity> recordings = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+		  
+		  return recordings;
+	  }
+}

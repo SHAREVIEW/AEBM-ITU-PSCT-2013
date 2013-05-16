@@ -1,5 +1,6 @@
 package dk.itu.psct.activityrecorder;
 
+import java.security.Timestamp;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -27,6 +28,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private LinkedList<Recording> recordingQueue;
 	private LinkedList<Recording> transferQueue;
 	private String recordingName = "";
+	Runnable transmitter;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +39,52 @@ public class MainActivity extends Activity implements SensorEventListener {
     	transferQueue = new LinkedList<Recording>();
     	recordingQueue = new LinkedList<Recording>();
     	
-    	Runnable r = new Runnable() {
-			
+    	transmitter = new Runnable() {
+			Boolean transferInitiated = false; 
 			@Override
 			public void run() {
+				String previouslySent = "";
+				int i = 0;
 				while (true)
 				{
 					if (transferQueue.size() > 0)
 					{
-						processRecording(transferQueue.poll());
+						transferInitiated = true;
+						final Recording rec = transferQueue.poll();
+						if (rec.getName() == previouslySent)
+						{
+							i++;
+						} else {
+							i = 1;
+							previouslySent = rec.getName();
+						}
+						final int msgCount = i;
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run()
+							{
+								TextView message = (TextView) findViewById(R.id.errorMessage);
+								message.setText("Transferring: " + rec.getName() + " - #" + msgCount);
+							}
+						});
+						processRecording(rec);
+					} else if (transferQueue.size() == 0 && transferInitiated)	// transfer is done.
+					{
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run()
+							{
+								TextView message = (TextView) findViewById(R.id.errorMessage);
+								message.setText("Transfer completed.");
+							}
+						});
+						transferInitiated = false;
 					}
 				}
 				
 			}
 		};
-		new Thread(r).start();
+		new Thread(transmitter).start();
     	
     }
 
@@ -70,6 +103,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     	{
     		transferQueue.addAll(recordingQueue);
     		message.setText("Transfer initiated.");
+    		recordingQueue.clear();
     	} else if (recording) 
     	{
     		message.setText("Still recording..");
@@ -214,11 +248,12 @@ public class MainActivity extends Activity implements SensorEventListener {
 	
 	public String getCurrentTimeAsString()
 	{
-		Calendar c = Calendar.getInstance(); 
-		int second = c.get(Calendar.MILLISECOND);
+		Calendar c = Calendar.getInstance();
+		int milisecond = c.get(Calendar.MILLISECOND);
+		int second = c.get(Calendar.SECOND);
 		int minute = c.get(Calendar.MINUTE);
 		int hour = c.get(Calendar.HOUR_OF_DAY);
-		return hour+":"+minute+":"+second;
+		return hour+":"+minute+":"+second+"."+milisecond;
 	}
 	
 	public void processRecording(Recording rec)
